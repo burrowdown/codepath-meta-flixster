@@ -1,11 +1,10 @@
 .movie-list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(auto, 185px));
+  justify-content: center;
   gap: 1rem;
   margin: 2rem;
-  justify-content: center;
   overflow-y: auto;
-  margin-bottom: 10rem;
 }
 
 .movie-card {
@@ -25,4 +24,34 @@
   font-size: 0.8rem;
   color: #666;
   margin-bottom: 0.5rem;
+}
+
+.load-more-button {
+  margin-bottom: 5rem;
+  font-size: 1.3rem;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--nav-background);
+  font-size: 1.5rem;
+  font-weight: 600;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.loading-spinner {
+  width: 40px;
+  animation: spin 5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
