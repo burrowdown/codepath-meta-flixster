@@ -8,7 +8,7 @@ const App = () => {
       <header className="title">
         <h1>Flixster</h1>
       </header>
-      <nav className="App-header">
+      <nav>
         <div className="app-nav">
           <span className="active">Now Playing</span>
           <span>Watched</span>
@@ -30,7 +30,7 @@ const App = () => {
         </div>
       </nav>
       <main>
-        <MovieList filter="rating" />
+        <MovieList />
       </main>
       <footer>
         <p>© 2025 Flixster</p>

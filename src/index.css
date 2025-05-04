@@ -30,7 +30,6 @@ button {
   color: var(--primary-background);
   cursor: pointer;
   transition: background-color 0.3s ease;
-  border-radius: 0 5px 5px 0;
 }
 
 button:hover {
@@ -39,7 +38,6 @@ button:hover {
 
 input[type="text"] {
   background-color: var(--primary-background);
-  border-radius: 5px 0 0 5px;
 }
 
 input:focus,

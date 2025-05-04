@@ -4,7 +4,7 @@
   text-align: center;
 }
 
-.App-header {
+nav {
   display: flex;
   flex-direction: column;
   background-color: var(--nav-background);
@@ -57,6 +57,57 @@ nav span:hover {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+}
+
+@media screen and (min-width: 600px) {
+  .App {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+    grid-template-areas:
+      "header header"
+      "nav main"
+      "footer footer";
+  }
+
+  header {
+    grid-area: header;
+  }
+  main {
+    grid-area: main;
+  }
+  footer {
+    grid-area: footer;
+  }
+
+  nav {
+    grid-area: nav;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .app-nav {
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 1rem;
+  }
+
+  .search-wrapper {
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .search {
+    width: 80%;
+  }
+
+  .search-wrapper input {
+    width: 10rem;
+  }
+
+  h1 {
+    padding: 1rem;
+  }
 }
 
 /* @media (max-width: 600px) {
