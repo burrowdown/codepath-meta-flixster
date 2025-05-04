@@ -1,19 +1,48 @@
+:root {
+  --primary-background: #eaeaea;
+  --nav-background: #2b3a67;
+  --button-color: #a675a1;
+  --button-hover: #895884;
+  --nav-text: #bf9bbc;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background-color: var(--primary-background);
+}
+
+input,
+select,
+option,
+button {
+  height: 2rem; /* Set a consistent height */
+  padding: 0 0.5rem; /* Adjust padding for consistent spacing */
+  font-size: 0.9rem; /* Ensure font size matches */
+  border-radius: 5px; /* Keep border radius consistent */
+  display: inline-block; /* Ensure proper alignment */
+  box-sizing: border-box; /* Include padding and border in height calculation */
+  border: none;
 }
 
 button {
-  background-color: #282c34;
-  color: white;
+  background-color: var(--button-color);
+  color: var(--primary-background);
   cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
   transition: background-color 0.3s ease;
+  border-radius: 0 5px 5px 0;
 }
 
 button:hover {
-  background-color: #777;
-  color: white;
+  background-color: var(--button-hover);
+}
+
+input[type="text"] {
+  background-color: var(--primary-background);
+  border-radius: 5px 0 0 5px;
+}
+
+input:focus,
+select:focus {
+  outline: 2px solid var(--button-color);
 }

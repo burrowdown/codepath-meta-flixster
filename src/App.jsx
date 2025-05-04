@@ -5,29 +5,36 @@ import "./App.css"
 const App = () => {
   return (
     <div className="App">
-      <header>
+      <header className="title">
         <h1>Flixster</h1>
-        <nav>
-          <ul>
-            <li>Now Playing</li>
-            <li>Watched</li>
-            <li>Favorites</li>
-          </ul>
-        </nav>
-        <div className="search">
-          <input type="text" placeholder="Search for a movie..." />
-          <button>Search</button>
-        </div>
-        <div className="filter">
-          <label htmlFor="filter">Filter by:</label>
-          <select id="sort" name="sort">
-            <option value="title">Title</option>
-            <option value="release-date">Release Date</option>
-            <option value="rating">Rating</option>
-          </select>
-        </div>
       </header>
-      <MovieList />
+      <nav className="App-header">
+        <div className="app-nav">
+          <span className="active">Now Playing</span>
+          <span>Watched</span>
+          <span>Favorites</span>
+        </div>
+        <div className="search-wrapper">
+          <div className="search">
+            <input type="text" placeholder="Search for a movie..." />
+            <button>Search</button>
+          </div>
+          <div className="filter">
+            <label htmlFor="filter">Filter by: </label>
+            <select id="sort" name="sort">
+              <option value="title">Title</option>
+              <option value="release-date">Release Date</option>
+              <option value="rating">Rating</option>
+            </select>
+          </div>
+        </div>
+      </nav>
+      <main>
+        <MovieList filter="rating" />
+      </main>
+      <footer>
+        <p>© 2025 Flixster</p>
+      </footer>
     </div>
   )
 }
