@@ -1,0 +1,28 @@
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 2rem;
+  justify-content: center;
+  overflow-y: auto;
+  margin-bottom: 10rem;
+}
+
+.movie-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 185px;
+}
+
+.movie-title {
+  font-weight: bold;
+  margin: 0.2rem;
+}
+
+.movie-rating {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
