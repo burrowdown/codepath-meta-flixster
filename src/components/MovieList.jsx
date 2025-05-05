@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react"
 import MovieCard from "./MovieCard"
 import "./MovieList.css"
+import { use } from "react"
 
-const MovieList = ({ sortBy, searchTerm }) => {
+const MovieList = ({ sortBy, searchTerm, currentPage }) => {
   const [movies, setMovies] = useState([])
   const [moviesToDisplay, setMoviesToDisplay] = useState([])
   const [loading, setLoading] = useState(true)
@@ -56,6 +57,12 @@ const MovieList = ({ sortBy, searchTerm }) => {
       window.scrollTo(0, scrollPosition.current)
     }
   }, [loading])
+
+  useEffect(() => {
+    if (currentPage === "now-playing") {
+      setMoviesToDisplay(movies)
+    }
+  }, [currentPage])
 
   // Filter and sort movies based on search term and sort criteria
   useEffect(() => {

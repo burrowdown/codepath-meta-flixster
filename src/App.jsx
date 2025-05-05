@@ -6,6 +6,13 @@ const App = () => {
   const [sortBy, setSortBy] = useState("title")
   const [searchTerm, setSearchTerm] = useState("")
   const [searchTermInput, setSearchTermInput] = useState("")
+  const [currentPage, setCurrentPage] = useState("now-playing")
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page)
+    setSearchTerm("")
+    setSearchTermInput("")
+  }
 
   return (
     <div className="App">
@@ -14,9 +21,26 @@ const App = () => {
       </header>
       <nav>
         <div className="app-nav">
-          <span className="active">Now Playing</span>
-          <span>Watched</span>
-          <span>Favorites</span>
+          <span
+            onClick={() => handlePageChange("now-playing")}
+            className={
+              currentPage === "now-playing" && searchTerm === "" ? "active" : ""
+            }
+          >
+            Now Playing
+          </span>
+          <span
+            onClick={() => handlePageChange("watched")}
+            className={currentPage === "watched" ? "active" : ""}
+          >
+            Watched
+          </span>
+          <span
+            onClick={() => handlePageChange("favorites")}
+            className={currentPage === "favorites" ? "active" : ""}
+          >
+            Favorites
+          </span>
         </div>
         <div className="search-wrapper">
           <div className="search">
@@ -46,7 +70,11 @@ const App = () => {
         </div>
       </nav>
       <main>
-        <MovieList sortBy={sortBy} searchTerm={searchTerm} />
+        <MovieList
+          sortBy={sortBy}
+          searchTerm={searchTerm}
+          currentPage={currentPage}
+        />
       </main>
       <footer>
         <p>© 2025 Flixster</p>
