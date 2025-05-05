@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from "react"
 import MovieCard from "./MovieCard"
 import "./MovieList.css"
 
-const MovieList = () => {
+const MovieList = ({ sortBy, searchTerm }) => {
   const [movies, setMovies] = useState([])
+  const [moviesToDisplay, setMoviesToDisplay] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [page, setPage] = useState(1)
@@ -49,12 +50,38 @@ const MovieList = () => {
     }
   }, [page])
 
+  // Restore the scroll position after movies are loaded
   useEffect(() => {
-    // Restore the scroll position after movies are loaded
     if (!loading) {
       window.scrollTo(0, scrollPosition.current)
     }
   }, [loading])
+
+  // Filter and sort movies based on search term and sort criteria
+  useEffect(() => {
+    let filteredMovies = [...movies]
+    console.log(movies.map((movie) => movie.vote_average))
+
+    if (searchTerm) {
+      filteredMovies = filteredMovies.filter((movie) =>
+        movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    }
+
+    if (sortBy === "title") {
+      filteredMovies.sort((a, b) => a.title.localeCompare(b.title))
+    } else if (sortBy === "release-date") {
+      filteredMovies.sort(
+        (a, b) => new Date(b.release_date) - new Date(a.release_date)
+      )
+    } else if (sortBy === "rating") {
+      filteredMovies.sort(
+        (a, b) => parseFloat(b.vote_average) - parseFloat(a.vote_average)
+      )
+    }
+
+    setMoviesToDisplay(filteredMovies)
+  }, [movies, sortBy, searchTerm])
 
   if (loading) {
     return (
@@ -73,7 +100,7 @@ const MovieList = () => {
   return (
     <>
       <div className="movie-list">
-        {movies.map((movie) => (
+        {moviesToDisplay.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
