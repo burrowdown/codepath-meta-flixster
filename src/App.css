@@ -111,18 +111,3 @@ nav span:hover {
     padding: 1rem;
   }
 }
-
-/* @media (max-width: 600px) {
-  .movie-card {
-    width: 100%;
-  }
-
-  .search-bar {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .search-bar form {
-    flex-direction: column;
-  }
-} */

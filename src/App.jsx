@@ -82,7 +82,10 @@ const App = () => {
       <footer>
         <p>© 2025 Flixster</p>
       </footer>
-      <MovieDetails movie={currentMovie} close={() => setCurrentMovie(null)} />
+      <MovieDetails
+        movieId={currentMovie ? currentMovie.id : null}
+        close={() => setCurrentMovie(null)}
+      />
     </div>
   )
 }

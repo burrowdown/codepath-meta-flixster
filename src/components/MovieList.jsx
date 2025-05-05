@@ -21,7 +21,7 @@ const MovieList = ({ sortBy, searchTerm, currentPage, setCurrentMovie }) => {
     },
   }
 
-  const fetchMovies = async (isLoadMore) => {
+  const fetchMovies = async () => {
     try {
       const response = await fetch(`${BASE_URL}&page=${page}`, options)
       if (!response.ok) {
@@ -101,6 +101,7 @@ const MovieList = ({ sortBy, searchTerm, currentPage, setCurrentMovie }) => {
     return <div>Error: {error.message}</div>
   }
   if (movies.length === 0) {
+    // TODO: why is this not showing up?
     return <div>No movies found</div>
   }
   return (
