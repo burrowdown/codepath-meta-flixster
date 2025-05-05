@@ -2,9 +2,9 @@
 
 Submitted by: Danny Burrow
 
-Estimated time spent: **#** hours spent in total
+Estimated time spent: **9** hours spent in total
 
-Deployed Application (**required**): [Flixster Deployed Site](ADD_LINK_HERE)
+Deployed Application (**required**): [Flixster Deployed Site](https://danny-burrow-codepath-meta-flixster.onrender.com)
 
 ### Application Features
 
@@ -62,8 +62,8 @@ Deployed Application (**required**): [Flixster Deployed Site](ADD_LINK_HERE)
     - [ ] Contact section
     - [x] Footer section
     - [x] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS**: To ease the grading process, please use the [color contrast checker](https://webaim.org/resources/contrastchecker/) to demonstrate to the grading team that text and background colors on your website have appropriate contrast. The Contrast Ratio should be above 4.5:1 and should have a green box surrounding it.
-  - [ ] **Deployment**
-  - [ ] Website is deployed via Render.
+  - [x] **Deployment**
+  - [x] Website is deployed via Render.
   - [ ] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS**: For ease of grading, please use the deployed version of your website when creating your walkthrough.
 
 #### STRETCH FEATURES
@@ -109,7 +109,7 @@ Deployed Application (**required**): [Flixster Deployed Site](ADD_LINK_HERE)
 
 - Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+I didn't look at the labs, no comment.
 
 - If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
 
@@ -121,8 +121,8 @@ Add your response here
 
 ### Open-source libraries used
 
-- Add any links to open-source libraries used in your project.
+Thought about using React Router just for the page nav stuff, decided to go without. I do kinda wish I had just gone for it though.
 
 ### Shout out
 
-Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+I used Copilot a bunch, so honestly huge shoutout to whoever made that suggestion last week and finally broke through my resistence. Saved me so much headache.

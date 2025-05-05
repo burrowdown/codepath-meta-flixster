@@ -41,25 +41,7 @@ const MovieList = ({ sortBy, searchTerm, currentPage, setCurrentMovie }) => {
     setLoading(true)
   }
 
-  useEffect(() => {
-    fetchMovies()
-  }, [page])
-
-  // Restore the scroll position after movies are loaded
-  useEffect(() => {
-    if (!loading) {
-      window.scrollTo(0, scrollPosition.current)
-    }
-  }, [loading])
-
-  useEffect(() => {
-    if (currentPage === "now-playing") {
-      setMoviesToDisplay(movies)
-    }
-  }, [currentPage])
-
-  // Filter and sort movies based on search term and sort criteria
-  useEffect(() => {
+  const filterAndSort = () => {
     let filteredMovies = [...movies]
 
     if (searchTerm) {
@@ -81,7 +63,29 @@ const MovieList = ({ sortBy, searchTerm, currentPage, setCurrentMovie }) => {
     }
 
     setMoviesToDisplay(filteredMovies)
-  }, [movies, sortBy, searchTerm])
+  }
+
+  // load movies when "load more" is clicked
+  useEffect(() => {
+    fetchMovies()
+  }, [page])
+
+  // Restore the scroll position after movies are loaded
+  useEffect(() => {
+    if (!loading) {
+      window.scrollTo(0, scrollPosition.current)
+    }
+  }, [loading])
+
+  // reset moviesToDisplay when navigating between pages
+  useEffect(() => {
+    if (currentPage === "now-playing") {
+      setMoviesToDisplay(movies)
+    }
+  }, [currentPage])
+
+  // Filter and sort movies based on search term and sort criteria
+  useEffect(filterAndSort, [movies, sortBy, searchTerm])
 
   if (loading) {
     return (
