@@ -1,5 +1,6 @@
 import { useState } from "react"
 import MovieList from "./components/MovieList"
+import MovieDetails from "./components/MovieDetails"
 import "./App.css"
 
 const App = () => {
@@ -7,6 +8,7 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState("")
   const [searchTermInput, setSearchTermInput] = useState("")
   const [currentPage, setCurrentPage] = useState("now-playing")
+  const [currentMovie, setCurrentMovie] = useState(null)
 
   const handlePageChange = (page) => {
     setCurrentPage(page)
@@ -74,11 +76,13 @@ const App = () => {
           sortBy={sortBy}
           searchTerm={searchTerm}
           currentPage={currentPage}
+          setCurrentMovie={setCurrentMovie}
         />
       </main>
       <footer>
         <p>© 2025 Flixster</p>
       </footer>
+      <MovieDetails movie={currentMovie} close={() => setCurrentMovie(null)} />
     </div>
   )
 }

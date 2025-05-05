@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from "react"
 import MovieCard from "./MovieCard"
 import "./MovieList.css"
-import { use } from "react"
 
-const MovieList = ({ sortBy, searchTerm, currentPage }) => {
+const MovieList = ({ sortBy, searchTerm, currentPage, setCurrentMovie }) => {
   const [movies, setMovies] = useState([])
   const [moviesToDisplay, setMoviesToDisplay] = useState([])
   const [loading, setLoading] = useState(true)
@@ -108,7 +107,11 @@ const MovieList = ({ sortBy, searchTerm, currentPage }) => {
     <>
       <div className="movie-list">
         {moviesToDisplay.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
+          <MovieCard
+            key={movie.id}
+            movie={movie}
+            setCurrentMovie={setCurrentMovie}
+          />
         ))}
       </div>
       <button onClick={loadMore} className="load-more-button">
