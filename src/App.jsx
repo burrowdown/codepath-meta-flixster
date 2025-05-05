@@ -4,6 +4,7 @@ import MovieDetails from "./components/MovieDetails"
 import "./App.css"
 
 const App = () => {
+  // TODO: something is happening with the default value for sortBy
   const [sortBy, setSortBy] = useState("title")
   const [searchTerm, setSearchTerm] = useState("")
   const [searchTermInput, setSearchTermInput] = useState("")

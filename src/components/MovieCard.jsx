@@ -6,7 +6,10 @@ const MovieCard = ({ movie, setCurrentMovie }) => {
 
   return (
     <div className="movie-card" onClick={() => setCurrentMovie(movie)}>
-      <img src={`${BASE_URL}${movie.poster_path}`} alt={movie.title} />
+      <img
+        src={`${BASE_URL}${movie.poster_path}`}
+        alt={`poster for ${movie.title}`}
+      />
       <div className="movie-title">{movie.title}</div>
       <div className="movie-rating">Rating: {movie.vote_average}</div>
     </div>

@@ -1,8 +1,8 @@
 :root {
   --primary-background: #eaeaea;
-  --nav-background: #2b3a67;
-  --button-color: #a675a1;
-  --button-hover: #895884;
+  --nav-background: #243156;
+  --button-color: #895884;
+  --button-hover: #a675a1;
   --nav-text: #bf9bbc;
 }
 
@@ -16,12 +16,10 @@ input,
 select,
 option,
 button {
-  height: 2rem; /* Set a consistent height */
-  padding: 0 0.5rem; /* Adjust padding for consistent spacing */
-  font-size: 0.9rem; /* Ensure font size matches */
-  border-radius: 5px; /* Keep border radius consistent */
-  display: inline-block; /* Ensure proper alignment */
-  box-sizing: border-box; /* Include padding and border in height calculation */
+  height: 2rem;
+  padding: 0 0.5rem;
+  font-size: 0.9rem;
+  border-radius: 5px;
   border: none;
 }
 

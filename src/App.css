@@ -36,12 +36,11 @@ footer {
   display: flex;
   justify-content: space-evenly;
   gap: 1rem;
-  color: var(--button-color);
+  color: var(--nav-text);
   align-items: center;
 }
 
 .app-nav .active {
-  color: var(--nav-text);
   text-decoration: underline;
 }
 

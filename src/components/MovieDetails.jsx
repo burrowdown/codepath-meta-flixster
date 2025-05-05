@@ -63,7 +63,7 @@ const MovieDetails = ({ movieId, close }) => {
       <div className="modal-content">
         <img
           src={`${IMAGE_BASE_URL}${movie.backdrop_path}`}
-          alt={movie.title}
+          alt={`Backdrop for ${movie.title}`}
         />
         <h2>{movie.title}</h2>
         <p className="overview">{movie.overview}</p>
