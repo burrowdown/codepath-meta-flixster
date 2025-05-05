@@ -26,7 +26,6 @@ const MovieDetails = ({ movieId, close }) => {
       }
       const data = await response.json()
       setMovie(data)
-      console.log(data)
     } catch (error) {
       setError(error)
     } finally {
@@ -43,7 +42,7 @@ const MovieDetails = ({ movieId, close }) => {
   useEffect(() => {
     setError(null)
     setLoading(true)
-    fetchMovie()
+    if (movieId) fetchMovie()
   }, [movieId])
 
   if (!movieId || !movie) return null

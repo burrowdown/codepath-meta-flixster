@@ -8,11 +8,10 @@ const MovieList = ({ sortBy, searchTerm, currentPage, setCurrentMovie }) => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [page, setPage] = useState(1)
-  const isMounted = useRef(false)
   const scrollPosition = useRef(0)
 
-  const BASE_URL =
-    "https://api.themoviedb.org/3/movie/now_playing?language=en-US"
+  const BASE_URL = "https://api.themoviedb.org/3/movie/now_playing?"
+
   const options = {
     method: "GET",
     headers: {
@@ -43,11 +42,7 @@ const MovieList = ({ sortBy, searchTerm, currentPage, setCurrentMovie }) => {
   }
 
   useEffect(() => {
-    if (isMounted.current) {
-      fetchMovies()
-    } else {
-      isMounted.current = true
-    }
+    fetchMovies()
   }, [page])
 
   // Restore the scroll position after movies are loaded
@@ -66,7 +61,6 @@ const MovieList = ({ sortBy, searchTerm, currentPage, setCurrentMovie }) => {
   // Filter and sort movies based on search term and sort criteria
   useEffect(() => {
     let filteredMovies = [...movies]
-    console.log(movies.map((movie) => movie.vote_average))
 
     if (searchTerm) {
       filteredMovies = filteredMovies.filter((movie) =>
