@@ -4,11 +4,11 @@ import "./MovieDetails.css"
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500"
 const MOVIE_BASE_URL = "https://api.themoviedb.org/3/movie/"
 
-const MovieDetails = ({ movieId, close }) => {
-  // TODO: genres
+const MovieDetails = ({ movieId, close, genres = [] }) => {
   const [movie, setMovie] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [genreNames, setGenreNames] = useState([])
 
   const options = {
     method: "GET",
@@ -33,6 +33,15 @@ const MovieDetails = ({ movieId, close }) => {
     }
   }
 
+  const getGenres = () => {
+    if (!movie || !movie.genres) return ""
+    const names = movie.genres.map((genre) => {
+      const foundGenre = genres.find((g) => g.id === genre.id)
+      return foundGenre ? foundGenre.name : ""
+    })
+    setGenreNames(names)
+  }
+
   const closeModal = () => {
     setError(null)
     setMovie(null)
@@ -44,6 +53,10 @@ const MovieDetails = ({ movieId, close }) => {
     setLoading(true)
     if (movieId) fetchMovie()
   }, [movieId])
+
+  useEffect(() => {
+    if (movie) getGenres()
+  }, [movie])
 
   if (!movieId || !movie) return null
   if (loading) {
@@ -74,6 +87,10 @@ const MovieDetails = ({ movieId, close }) => {
         </p>
         <p>
           <span className="label">Runtime:</span> {movie.runtime} minutes
+        </p>
+        <p>
+          <span className="label">Genres:</span>{" "}
+          {genreNames.length > 0 ? genreNames.join(", ") : "N/A"}
         </p>
         <a href={`https://www.imdb.com/title/${movie.imdb_id}`}>
           {movie.title} on IMDB

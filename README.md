@@ -45,7 +45,7 @@ Deployed Application (**required**): [Flixster Deployed Site](https://danny-burr
       - [x] Runtime in minutes
       - [x] Backdrop poster
       - [x] Release date
-      - [ ] Genres
+      - [x] Genres
       - [x] An overview
   - [x] Users can use a drop-down menu to sort movies.
     - [x] Drop-down allows movies to be sorted by:

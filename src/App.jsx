@@ -1,21 +1,38 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import MovieList from "./components/MovieList"
 import MovieDetails from "./components/MovieDetails"
 import "./App.css"
 
 const App = () => {
-  // TODO: something is happening with the default value for sortBy
-  const [sortBy, setSortBy] = useState("title")
+  const [sortBy, setSortBy] = useState("")
   const [searchTerm, setSearchTerm] = useState("")
   const [searchTermInput, setSearchTermInput] = useState("")
   const [currentPage, setCurrentPage] = useState("now-playing")
   const [currentMovie, setCurrentMovie] = useState(null)
+  const [genres, setGenres] = useState([])
 
   const handlePageChange = (page) => {
     setCurrentPage(page)
     setSearchTerm("")
     setSearchTermInput("")
   }
+
+  useEffect(() => {
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${import.meta.env.VITE_API_READ_ACCESS_TOKEN}`,
+      },
+    }
+    const fetchGenres = async () => {
+      const url = "https://api.themoviedb.org/3/genre/movie/list"
+      const response = await fetch(url, options)
+      const genreData = await response.json()
+      setGenres(genreData.genres)
+    }
+    fetchGenres()
+  }, [])
 
   return (
     <div className="App">
@@ -65,6 +82,9 @@ const App = () => {
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
             >
+              <option value="" disabled>
+                ---
+              </option>
               <option value="release-date">Release Date</option>
               <option value="rating">Rating</option>
               <option value="title">Title</option>
@@ -85,6 +105,7 @@ const App = () => {
       </footer>
       <MovieDetails
         movieId={currentMovie ? currentMovie.id : null}
+        genres={genres}
         close={() => setCurrentMovie(null)}
       />
     </div>

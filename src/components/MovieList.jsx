@@ -8,6 +8,7 @@ const MovieList = ({ sortBy, searchTerm, currentPage, setCurrentMovie }) => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [page, setPage] = useState(1)
+  const [tmdbConfig, setTmdbConfig] = useState(null)
   const scrollPosition = useRef(0)
 
   const BASE_URL = "https://api.themoviedb.org/3/movie/now_playing?"
@@ -87,6 +88,17 @@ const MovieList = ({ sortBy, searchTerm, currentPage, setCurrentMovie }) => {
   // Filter and sort movies based on search term and sort criteria
   useEffect(filterAndSort, [movies, sortBy, searchTerm])
 
+  // get tmdb config to get the base URL
+  useEffect(() => {
+    const fetchConfig = async () => {
+      const url = "https://api.themoviedb.org/3/configuration"
+      const response = await fetch(url, options)
+      const configData = await response.json()
+      setTmdbConfig(configData)
+    }
+    fetchConfig()
+  }, [])
+
   if (loading) {
     return (
       <div className="loading">
@@ -96,11 +108,10 @@ const MovieList = ({ sortBy, searchTerm, currentPage, setCurrentMovie }) => {
     )
   }
   if (error) {
-    return <div>Error: {error.message}</div>
+    return <div className="loading">Error: {error.message}</div>
   }
-  if (movies.length === 0) {
-    // TODO: why is this not showing up?
-    return <div>No movies found</div>
+  if (moviesToDisplay.length === 0) {
+    return <div className="loading">No movies found</div>
   }
   return (
     <>
@@ -110,6 +121,7 @@ const MovieList = ({ sortBy, searchTerm, currentPage, setCurrentMovie }) => {
             key={movie.id}
             movie={movie}
             setCurrentMovie={setCurrentMovie}
+            config={tmdbConfig}
           />
         ))}
       </div>

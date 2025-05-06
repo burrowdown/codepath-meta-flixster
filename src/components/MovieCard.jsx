@@ -1,15 +1,15 @@
-// TODO: call the config endpoint to get the base URL
-const BASE_URL = "https://image.tmdb.org/t/p/w185"
+const FALLBACK_URL = "https://image.tmdb.org/t/p"
 
-const MovieCard = ({ movie, setCurrentMovie }) => {
+const MovieCard = ({ movie, setCurrentMovie, config }) => {
   if (!movie) return null
+
+  const base_url =
+    config && config.images ? config.images.base_url : FALLBACK_URL
+  const url = `${base_url}/w185${movie.poster_path}`
 
   return (
     <div className="movie-card" onClick={() => setCurrentMovie(movie)}>
-      <img
-        src={`${BASE_URL}${movie.poster_path}`}
-        alt={`poster for ${movie.title}`}
-      />
+      <img src={url} alt={`poster for ${movie.title}`} />
       <div className="movie-title">{movie.title}</div>
       <div className="movie-rating">Rating: {movie.vote_average}</div>
     </div>
