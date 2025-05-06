@@ -8,6 +8,7 @@
   height: 100%;
   overflow: auto;
   background-color: #333b;
+  z-index: 3;
 }
 
 .modal-content {

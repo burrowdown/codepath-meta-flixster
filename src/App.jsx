@@ -3,6 +3,8 @@ import MovieList from "./components/MovieList"
 import MovieDetails from "./components/MovieDetails"
 import "./App.css"
 
+// TODO: fetch favorites and watched movies
+
 const App = () => {
   const [sortBy, setSortBy] = useState("")
   const [searchTerm, setSearchTerm] = useState("")

@@ -12,7 +12,7 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px #0001;
   overflow: hidden;
-  width: 185px;
+  position: relative;
 }
 
 .movie-card:hover {
@@ -60,4 +60,36 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* cut out notch */
+
+.movie-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 3.5rem;
+  height: 1.7rem;
+  background-color: #fffa;
+  border-bottom-left-radius: 8px;
+  z-index: 2;
+}
+
+.movie-card-icons {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 3;
+  padding: 0.1rem;
+}
+
+.movie-card-icons svg {
+  cursor: pointer;
+}
+
+.movie-card-icons svg:hover {
+  color: #000;
 }
