@@ -23,12 +23,12 @@ Deployed Application (**required**): [Flixster Deployed Site](https://danny-burr
   - [x] The search bar should include:
     - [x] Text input field
     - [x] Submit/Search button
-    - [ ] Clear button
+    - [x] Clear button
   - [x] Movies with a title containing the search query in the text input field are displayed in a grid view when the user either:
-    - [ ] Presses the Enter key
+    - [x] Presses the Enter key
     - [x] Clicks the Submit/Search button
-  - [ ] Users can click the Clear button. When clicked:
-    - [ ] Most recent search results are cleared from the text input field and the grid view and all current movies are displayed in a grid view
+  - [x] Users can click the Clear button. When clicked:
+    - [x] Most recent search results are cleared from the text input field and the grid view and all current movies are displayed in a grid view
 - [x] **Design Features**
   - [x] Website implements all of the following accessibility features:
     - [x] Semantic HTML

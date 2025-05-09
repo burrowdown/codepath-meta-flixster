@@ -48,6 +48,12 @@ const MovieDetails = ({ movieId, close, genres = [] }) => {
     setGenreNames(names)
   }
 
+  const handleClose = (e) => {
+    if (!e.target.classList.contains("modal-overlay")) {
+      return
+    } else closeModal()
+  }
+
   const closeModal = () => {
     setError(null)
     setMovie(null)
@@ -80,7 +86,7 @@ const MovieDetails = ({ movieId, close, genres = [] }) => {
     return <div>Error: {error.message}</div>
   }
   return (
-    <section className="modal-overlay">
+    <section className="modal-overlay" onClick={(e) => handleClose(e)}>
       <div className="modal-content">
         <img
           src={`${IMAGE_BASE_URL}${movie.backdrop_path}`}

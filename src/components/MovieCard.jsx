@@ -64,12 +64,12 @@ const MovieCard = ({
       <div className="movie-card-icons">
         <FontAwesomeIcon
           icon={isWatched ? eyeSolid : eyeRegular}
-          color={isWatched ? "blue" : "#888"}
+          color={isWatched ? "#1D84B5" : "#888"}
           onClick={(e) => addWatched(e)}
         />
         <FontAwesomeIcon
           icon={isFavorite ? heartSolid : heartRegular}
-          color={isFavorite ? "red" : "#888"}
+          color={isFavorite ? "#FF4242" : "#888"}
           onClick={(e) => addFavorite(e)}
         />
       </div>

@@ -64,9 +64,26 @@ const App = () => {
               type="text"
               placeholder="Search for a movie..."
               onChange={(e) => setSearchTermInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  setSearchTerm(searchTermInput)
+                }
+              }}
             />
-            <button onClick={() => setSearchTerm(searchTermInput)}>
+            <button
+              className="search-button"
+              onClick={() => setSearchTerm(searchTermInput)}
+            >
               Search
+            </button>
+            <button
+              className="clear-button"
+              onClick={() => {
+                setSearchTerm("")
+                setSearchTermInput("")
+              }}
+            >
+              Clear
             </button>
           </div>
           <div className="sort">

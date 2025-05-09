@@ -124,9 +124,11 @@ const MovieList = ({ sortBy, searchTerm, currentPage, setCurrentMovie }) => {
           />
         ))}
       </div>
-      <button onClick={loadMore} className="load-more-button">
-        Load More
-      </button>
+      {currentPage === "now-playing" && (
+        <button onClick={loadMore} className="load-more-button">
+          Load More
+        </button>
+      )}
     </>
   )
 }

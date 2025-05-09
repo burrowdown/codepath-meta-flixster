@@ -3,6 +3,7 @@
 .App {
   text-align: center;
   display: grid;
+  margin-bottom: 5rem;
 }
 
 nav {
@@ -58,6 +59,26 @@ nav span:hover {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+}
+
+.clear-button {
+  background-color: #644060;
+}
+
+@media screen and (max-width: 900px) {
+  .search-wrapper input {
+    border-radius: 8px 0 0 8px;
+  }
+
+  .clear-button {
+    border-radius: 0 8px 8px 0;
+    margin: 0;
+  }
+
+  .search-button {
+    border-radius: 0;
+    margin: 0;
+  }
 }
 
 @media screen and (min-width: 900px) {
