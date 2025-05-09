@@ -16,6 +16,7 @@ const App = () => {
     setCurrentPage(page)
     setSearchTerm("")
     setSearchTermInput("")
+    setSortBy("")
   }
 
   useEffect(() => {

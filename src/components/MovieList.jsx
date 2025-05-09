@@ -59,7 +59,10 @@ const MovieList = ({ sortBy, searchTerm, currentPage, setCurrentMovie }) => {
 
   // Filter and sort movies based on search term and sort criteria
   useEffect(() => {
-    setMoviesToDisplay(filterAndSort(movies, sortBy, searchTerm))
+    let theseMovies = movies
+    if (currentPage === "favorites") theseMovies = favorites
+    if (currentPage === "watched") theseMovies = watched
+    setMoviesToDisplay(filterAndSort(theseMovies, sortBy, searchTerm))
   }, [movies, sortBy, searchTerm])
 
   useEffect(() => {
