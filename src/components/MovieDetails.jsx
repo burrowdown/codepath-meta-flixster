@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import "./MovieDetails.css"
+import { OPTIONS } from "../utils/constants"
 
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500"
 const MOVIE_BASE_URL = "https://api.themoviedb.org/3/movie/"
@@ -10,17 +11,9 @@ const MovieDetails = ({ movieId, close, genres = [] }) => {
   const [error, setError] = useState(null)
   const [genreNames, setGenreNames] = useState([])
 
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer ${import.meta.env.VITE_API_READ_ACCESS_TOKEN}`,
-    },
-  }
-
   const fetchMovie = async () => {
     try {
-      const response = await fetch(`${MOVIE_BASE_URL}${movieId}`, options)
+      const response = await fetch(`${MOVIE_BASE_URL}${movieId}`, OPTIONS)
       if (!response.ok) {
         throw new Error("Network response was not ok")
       }

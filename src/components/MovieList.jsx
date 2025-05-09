@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import MovieCard from "./MovieCard"
 import "./MovieList.css"
+import { OPTIONS } from "../utils/constants"
 
 const MovieList = ({ sortBy, searchTerm, currentPage, setCurrentMovie }) => {
   const [movies, setMovies] = useState([])
@@ -13,17 +14,9 @@ const MovieList = ({ sortBy, searchTerm, currentPage, setCurrentMovie }) => {
 
   const BASE_URL = "https://api.themoviedb.org/3/movie/now_playing?"
 
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer ${import.meta.env.VITE_API_READ_ACCESS_TOKEN}`,
-    },
-  }
-
   const fetchMovies = async () => {
     try {
-      const response = await fetch(`${BASE_URL}&page=${page}`, options)
+      const response = await fetch(`${BASE_URL}&page=${page}`, OPTIONS)
       if (!response.ok) {
         throw new Error("Network response was not ok")
       }
@@ -92,7 +85,7 @@ const MovieList = ({ sortBy, searchTerm, currentPage, setCurrentMovie }) => {
   useEffect(() => {
     const fetchConfig = async () => {
       const url = "https://api.themoviedb.org/3/configuration"
-      const response = await fetch(url, options)
+      const response = await fetch(url, OPTIONS)
       const configData = await response.json()
       setTmdbConfig(configData)
     }

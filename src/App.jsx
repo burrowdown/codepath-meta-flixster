@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import MovieList from "./components/MovieList"
 import MovieDetails from "./components/MovieDetails"
 import "./App.css"
+import { OPTIONS } from "./utils/constants"
 
 // TODO: fetch favorites and watched movies
 
@@ -20,16 +21,9 @@ const App = () => {
   }
 
   useEffect(() => {
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${import.meta.env.VITE_API_READ_ACCESS_TOKEN}`,
-      },
-    }
     const fetchGenres = async () => {
       const url = "https://api.themoviedb.org/3/genre/movie/list"
-      const response = await fetch(url, options)
+      const response = await fetch(url, OPTIONS)
       const genreData = await response.json()
       setGenres(genreData.genres)
     }

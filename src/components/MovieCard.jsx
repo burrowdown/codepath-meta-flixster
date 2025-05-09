@@ -4,6 +4,7 @@ import { faHeart as heartSolid } from "@fortawesome/free-solid-svg-icons"
 import { faHeart as heartRegular } from "@fortawesome/free-regular-svg-icons"
 import { faEye as eyeSolid } from "@fortawesome/free-solid-svg-icons"
 import { faEye as eyeRegular } from "@fortawesome/free-regular-svg-icons"
+import { OPTIONS } from "../utils/constants"
 
 const FALLBACK_URL = "https://image.tmdb.org/t/p"
 
@@ -27,7 +28,7 @@ const MovieCard = ({ movie, setCurrentMovie, config }) => {
         headers: {
           accept: "application/json",
           "content-type": "application/json",
-          Authorization: `Bearer ${import.meta.env.VITE_API_READ_ACCESS_TOKEN}`,
+          Authorization: OPTIONS.headers.Authorization,
         },
         body: JSON.stringify({
           media_type: "movie",
