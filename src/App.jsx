@@ -47,7 +47,7 @@ const App = () => {
             onClick={() => handlePageChange("watched")}
             className={currentPage === "watched" ? "active" : ""}
           >
-            Watched
+            Watchlist
           </span>
           <span
             onClick={() => handlePageChange("favorites")}

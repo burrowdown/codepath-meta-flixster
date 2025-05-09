@@ -10,6 +10,7 @@ const MovieDetails = ({ movieId, close, genres = [] }) => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [genreNames, setGenreNames] = useState([])
+  const [trailerKey, setTrailerKey] = useState(null)
 
   const fetchMovie = async () => {
     try {
@@ -23,6 +24,18 @@ const MovieDetails = ({ movieId, close, genres = [] }) => {
       setError(error)
     } finally {
       setLoading(false)
+    }
+  }
+
+  const fetchTrailer = async () => {
+    const url = `https://api.themoviedb.org/3/movie/${movieId}/videos`
+    const response = await fetch(url, OPTIONS)
+    if (response.ok) {
+      const videoData = await response.json()
+      const trailer = videoData.results.find(
+        (vid) => vid.site === "YouTube" && vid.type === "Trailer" && vid.key
+      )
+      setTrailerKey(trailer ? trailer.key : null)
     }
   }
 
@@ -44,7 +57,10 @@ const MovieDetails = ({ movieId, close, genres = [] }) => {
   useEffect(() => {
     setError(null)
     setLoading(true)
-    if (movieId) fetchMovie()
+    if (movieId) {
+      fetchMovie()
+      fetchTrailer()
+    }
   }, [movieId])
 
   useEffect(() => {
@@ -88,6 +104,17 @@ const MovieDetails = ({ movieId, close, genres = [] }) => {
         <a href={`https://www.imdb.com/title/${movie.imdb_id}`}>
           {movie.title} on IMDB
         </a>
+        {trailerKey && (
+          <div className="trailer-container">
+            <div className="iframe-wrapper">
+              <iframe
+                src={`https://www.youtube.com/embed/${trailerKey}`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        )}
         <button className="close-button" onClick={closeModal}>
           Close
         </button>
