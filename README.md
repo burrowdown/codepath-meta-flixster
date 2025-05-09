@@ -96,8 +96,8 @@ Deployed Application (**required**): [Flixster Deployed Site](https://danny-burr
     - [x] Favorites
     - [x] Watched
   - [x] The Home page displays all current movies in a grid view, the search bar, and the sort movies drop-down.
-  - [ ] The Favorites page displays all favorited movies in a grid view.
-  - [ ] The Watched page displays all watched movies in a grid view.
+  - [x] The Favorites page displays all favorited movies in a grid view.
+  - [x] The Watched page displays all watched movies in a grid view.
 
 ### Walkthrough Video
 

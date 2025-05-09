@@ -52,9 +52,9 @@ const MovieList = ({ sortBy, searchTerm, currentPage, setCurrentMovie }) => {
 
   // reset moviesToDisplay when navigating between pages
   useEffect(() => {
-    if (currentPage === "now-playing") {
-      setMoviesToDisplay(movies)
-    }
+    if (currentPage === "now-playing") setMoviesToDisplay(movies)
+    if (currentPage === "favorites") setMoviesToDisplay(favorites)
+    if (currentPage === "watched") setMoviesToDisplay(watched)
   }, [currentPage])
 
   // Filter and sort movies based on search term and sort criteria
