@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import MovieCard from "./MovieCard"
 import "./MovieList.css"
 import { OPTIONS } from "../utils/constants"
+import { filterAndSort } from "../utils/utils"
 
 const MovieList = ({ sortBy, searchTerm, currentPage, setCurrentMovie }) => {
   const [movies, setMovies] = useState([])
@@ -35,30 +36,6 @@ const MovieList = ({ sortBy, searchTerm, currentPage, setCurrentMovie }) => {
     setLoading(true)
   }
 
-  const filterAndSort = () => {
-    let filteredMovies = [...movies]
-
-    if (searchTerm) {
-      filteredMovies = filteredMovies.filter((movie) =>
-        movie.title.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    }
-
-    if (sortBy === "title") {
-      filteredMovies.sort((a, b) => a.title.localeCompare(b.title))
-    } else if (sortBy === "release-date") {
-      filteredMovies.sort(
-        (a, b) => new Date(b.release_date) - new Date(a.release_date)
-      )
-    } else if (sortBy === "rating") {
-      filteredMovies.sort(
-        (a, b) => parseFloat(b.vote_average) - parseFloat(a.vote_average)
-      )
-    }
-
-    setMoviesToDisplay(filteredMovies)
-  }
-
   // load movies when "load more" is clicked
   useEffect(() => {
     fetchMovies()
@@ -79,7 +56,9 @@ const MovieList = ({ sortBy, searchTerm, currentPage, setCurrentMovie }) => {
   }, [currentPage])
 
   // Filter and sort movies based on search term and sort criteria
-  useEffect(filterAndSort, [movies, sortBy, searchTerm])
+  useEffect(() => {
+    setMoviesToDisplay(filterAndSort(movies, sortBy, searchTerm))
+  }, [movies, sortBy, searchTerm])
 
   // get tmdb config to get the base URL
   useEffect(() => {
