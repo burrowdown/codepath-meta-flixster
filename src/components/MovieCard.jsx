@@ -1,16 +1,22 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faHeart as heartSolid } from "@fortawesome/free-solid-svg-icons"
 import { faHeart as heartRegular } from "@fortawesome/free-regular-svg-icons"
 import { faEye as eyeSolid } from "@fortawesome/free-solid-svg-icons"
 import { faEye as eyeRegular } from "@fortawesome/free-regular-svg-icons"
-import { OPTIONS } from "../utils/constants"
+import { setMovieState } from "../utils/utils"
 
 const FALLBACK_URL = "https://image.tmdb.org/t/p"
 
-const MovieCard = ({ movie, setCurrentMovie, config }) => {
-  const [isFavorite, setIsFavorite] = useState(false)
-  const [isWatched, setIsWatched] = useState(false)
+const MovieCard = ({
+  movie,
+  setCurrentMovie,
+  config,
+  alreadyFavorited,
+  alreadyWatched,
+}) => {
+  const [isFavorite, setIsFavorite] = useState(alreadyFavorited)
+  const [isWatched, setIsWatched] = useState(alreadyWatched)
   if (!movie) return null
 
   const base_url =
@@ -19,37 +25,39 @@ const MovieCard = ({ movie, setCurrentMovie, config }) => {
 
   const addFavorite = async (e) => {
     e.stopPropagation()
-    try {
-      const url = `https://api.themoviedb.org/3/account/${
-        import.meta.env.VITE_ACCOUNT_ID
-      }/favorite`
-      const options = {
-        method: "POST",
-        headers: {
-          accept: "application/json",
-          "content-type": "application/json",
-          Authorization: OPTIONS.headers.Authorization,
-        },
-        body: JSON.stringify({
-          media_type: "movie",
-          media_id: movie.id,
-          favorite: !isFavorite,
-        }),
-      }
-      const response = await fetch(url, options)
-      if (!response.ok) throw new Error("Network response was not ok")
-      const json = await response.json()
-      if (json.status_code === 1 || json.status_code === 12) {
-        setIsFavorite(true)
-      } else if (json.status_code === 13) {
-        setIsFavorite(false)
-      } else {
-        throw new Error(`Unexpected status code: ${json.status_code}`)
-      }
-    } catch (error) {
-      console.error("Error adding favorite:", error)
-    }
+    const body = JSON.stringify({
+      media_type: "movie",
+      media_id: movie.id,
+      favorite: !isFavorite,
+    })
+    const url = `https://api.themoviedb.org/3/account/${
+      import.meta.env.VITE_ACCOUNT_ID
+    }/favorite`
+
+    setMovieState(url, body, setIsFavorite)
   }
+
+  const addWatched = async (e) => {
+    e.stopPropagation()
+    const body = JSON.stringify({
+      media_type: "movie",
+      media_id: movie.id,
+      watchlist: !isWatched,
+    })
+    const url = `https://api.themoviedb.org/3/account/${
+      import.meta.env.VITE_ACCOUNT_ID
+    }/watchlist`
+
+    setMovieState(url, body, setIsWatched)
+  }
+
+  useEffect(() => {
+    setIsFavorite(alreadyFavorited)
+  }, [alreadyFavorited])
+
+  useEffect(() => {
+    setIsWatched(alreadyWatched)
+  }, [alreadyWatched])
 
   return (
     <div className="movie-card" onClick={() => setCurrentMovie(movie)}>
@@ -57,6 +65,7 @@ const MovieCard = ({ movie, setCurrentMovie, config }) => {
         <FontAwesomeIcon
           icon={isWatched ? eyeSolid : eyeRegular}
           color={isWatched ? "blue" : "#888"}
+          onClick={(e) => addWatched(e)}
         />
         <FontAwesomeIcon
           icon={isFavorite ? heartSolid : heartRegular}

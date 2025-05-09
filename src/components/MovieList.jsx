@@ -11,6 +11,8 @@ const MovieList = ({ sortBy, searchTerm, currentPage, setCurrentMovie }) => {
   const [error, setError] = useState(null)
   const [page, setPage] = useState(1)
   const [tmdbConfig, setTmdbConfig] = useState(null)
+  const [favorites, setFavorites] = useState([])
+  const [watched, setWatched] = useState([])
   const scrollPosition = useRef(0)
 
   const BASE_URL = "https://api.themoviedb.org/3/movie/now_playing?"
@@ -60,15 +62,35 @@ const MovieList = ({ sortBy, searchTerm, currentPage, setCurrentMovie }) => {
     setMoviesToDisplay(filterAndSort(movies, sortBy, searchTerm))
   }, [movies, sortBy, searchTerm])
 
-  // get tmdb config to get the base URL
   useEffect(() => {
+    // get tmdb config to get the base URL
     const fetchConfig = async () => {
       const url = "https://api.themoviedb.org/3/configuration"
       const response = await fetch(url, OPTIONS)
       const configData = await response.json()
       setTmdbConfig(configData)
     }
+    // get favorites
+    const fetchFavorites = async () => {
+      const url = `https://api.themoviedb.org/3/account/${
+        import.meta.env.VITE_ACCOUNT_ID
+      }/favorite/movies`
+      const response = await fetch(url, OPTIONS)
+      const favoritesData = await response.json()
+      setFavorites(favoritesData.results)
+    }
+    // get watchlist
+    const fetchWatched = async () => {
+      const url = `https://api.themoviedb.org/3/account/${
+        import.meta.env.VITE_ACCOUNT_ID
+      }/watchlist/movies`
+      const response = await fetch(url, OPTIONS)
+      const watchedData = await response.json()
+      setWatched(watchedData.results)
+    }
     fetchConfig()
+    fetchFavorites()
+    fetchWatched()
   }, [])
 
   if (loading) {
@@ -94,6 +116,8 @@ const MovieList = ({ sortBy, searchTerm, currentPage, setCurrentMovie }) => {
             movie={movie}
             setCurrentMovie={setCurrentMovie}
             config={tmdbConfig}
+            alreadyFavorited={favorites.some((m) => m.id === movie.id)}
+            alreadyWatched={watched.some((m) => m.id === movie.id)}
           />
         ))}
       </div>

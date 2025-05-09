@@ -4,8 +4,6 @@ import MovieDetails from "./components/MovieDetails"
 import "./App.css"
 import { OPTIONS } from "./utils/constants"
 
-// TODO: fetch favorites and watched movies
-
 const App = () => {
   const [sortBy, setSortBy] = useState("")
   const [searchTerm, setSearchTerm] = useState("")
