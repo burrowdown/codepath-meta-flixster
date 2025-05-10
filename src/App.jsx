@@ -10,6 +10,7 @@ const App = () => {
   const [searchTermInput, setSearchTermInput] = useState("")
   const [currentPage, setCurrentPage] = useState("now-playing")
   const [currentMovie, setCurrentMovie] = useState(null)
+
   const [genres, setGenres] = useState([])
 
   const handlePageChange = (page) => {
@@ -116,7 +117,7 @@ const App = () => {
         <p>© 2025 Flixster</p>
       </footer>
       <MovieDetails
-        movieId={currentMovie ? currentMovie.id : null}
+        movieInfo={currentMovie}
         genres={genres}
         close={() => setCurrentMovie(null)}
       />

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
 import { setMovieState } from "../utils/utils"
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faHeart as heartSolid } from "@fortawesome/free-solid-svg-icons"
 import { faHeart as heartRegular } from "@fortawesome/free-regular-svg-icons"
 import { faEye as eyeSolid } from "@fortawesome/free-solid-svg-icons"
 import { faEye as eyeRegular } from "@fortawesome/free-regular-svg-icons"
+import "./StatusActions.css"
 
 const StatusActions = ({ alreadyFavorited, alreadyWatched, movie }) => {
   const [isFavorite, setIsFavorite] = useState(alreadyFavorited)

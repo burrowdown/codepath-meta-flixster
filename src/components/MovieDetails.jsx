@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react"
 import "./MovieDetails.css"
 import { OPTIONS } from "../utils/constants"
+import StatusActions from "./StatusActions"
 
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500"
 const MOVIE_BASE_URL = "https://api.themoviedb.org/3/movie/"
 
-const MovieDetails = ({ movieId, close, genres = [] }) => {
+const MovieDetails = ({ movieInfo, close, genres = [] }) => {
+  if (!movieInfo) return null
+
   const [movie, setMovie] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -14,7 +17,7 @@ const MovieDetails = ({ movieId, close, genres = [] }) => {
 
   const fetchMovie = async () => {
     try {
-      const response = await fetch(`${MOVIE_BASE_URL}${movieId}`, OPTIONS)
+      const response = await fetch(`${MOVIE_BASE_URL}${movieInfo.id}`, OPTIONS)
       if (!response.ok) {
         throw new Error("Network response was not ok")
       }
@@ -28,7 +31,7 @@ const MovieDetails = ({ movieId, close, genres = [] }) => {
   }
 
   const fetchTrailer = async () => {
-    const url = `https://api.themoviedb.org/3/movie/${movieId}/videos`
+    const url = `https://api.themoviedb.org/3/movie/${movieInfo.id}/videos`
     const response = await fetch(url, OPTIONS)
     if (response.ok) {
       const videoData = await response.json()
@@ -63,17 +66,17 @@ const MovieDetails = ({ movieId, close, genres = [] }) => {
   useEffect(() => {
     setError(null)
     setLoading(true)
-    if (movieId) {
+    if (movieInfo.id) {
       fetchMovie()
       fetchTrailer()
     }
-  }, [movieId])
+  }, [movieInfo.id])
 
   useEffect(() => {
     if (movie) getGenres()
   }, [movie])
 
-  if (!movieId || !movie) return null
+  if (!movieInfo.id || !movie) return null
   if (loading) {
     return (
       <div className="loading">
@@ -88,10 +91,19 @@ const MovieDetails = ({ movieId, close, genres = [] }) => {
   return (
     <section className="modal-overlay" onClick={(e) => handleClose(e)}>
       <div className="modal-content">
-        <img
-          src={`${IMAGE_BASE_URL}${movie.backdrop_path}`}
-          alt={`Backdrop for ${movie.title}`}
-        />
+        <div className="status-actions-wrapper">
+          <div className="status-actions">
+            <StatusActions
+              alreadyFavorited={movieInfo.isFavorite}
+              alreadyWatched={movieInfo.isWatched}
+              movie={movie}
+            />
+          </div>
+          <img
+            src={`${IMAGE_BASE_URL}${movie.backdrop_path}`}
+            alt={`Backdrop for ${movie.title}`}
+          />
+        </div>
         <h2>{movie.title}</h2>
         <p className="overview">{movie.overview}</p>
         <p>
@@ -115,7 +127,6 @@ const MovieDetails = ({ movieId, close, genres = [] }) => {
             <div className="iframe-wrapper">
               <iframe
                 src={`https://www.youtube.com/embed/${trailerKey}`}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
             </div>

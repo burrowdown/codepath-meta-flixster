@@ -17,16 +17,16 @@ const MovieCard = ({
 
   return (
     <div
-      className="movie-card"
-      onClick={() =>
+      className="movie-card status-actions-wrapper"
+      onClick={() => {
         setCurrentMovie({
           id: movie.id,
           isFavorite: alreadyFavorited,
           isWatched: alreadyWatched,
         })
-      }
+      }}
     >
-      <div className="movie-card-icons">
+      <div className="status-actions">
         <StatusActions
           movie={movie}
           alreadyFavorited={alreadyFavorited}
