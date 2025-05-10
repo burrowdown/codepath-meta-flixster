@@ -2,7 +2,7 @@
 
 Submitted by: Danny Burrow
 
-Estimated time spent: **9** hours spent in total
+Estimated time spent: **10** hours spent in total
 
 Deployed Application (**required**): [Flixster Deployed Site](https://danny-burrow-codepath-meta-flixster.onrender.com)
 
@@ -113,7 +113,9 @@ I didn't look at the labs, no comment.
 
 - If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
 
-Add your response here
+The TMDb endpoint for getting favorite movies only loads the first 20, in order of when they were added, starting with the oldest. That means that once I like more than 20 movies, the icon statuses won't be accurate. This is a tricky problem, but I think my first attempt would just be to keep getting all the liked moved until the API stops giving new data. Same with the watchlist.
+
+If anything I regret implementing persistent favorites that link to my TMDb account! It was a big job to implement, and just results in an outcome that's weird anyway.
 
 - Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
@@ -126,3 +128,5 @@ Thought about using React Router just for the page nav stuff, decided to go with
 ### Shout out
 
 I used Copilot a bunch, so honestly huge shoutout to whoever made that suggestion last week and finally broke through my resistence. Saved me so much headache.
+
+When I looked at Gabriel's code I saw a bunch of cool ideas I wish I had implemented, but it definitely motivated me to create my utils and move as much logic as I could in there. The components are already cumbersome!

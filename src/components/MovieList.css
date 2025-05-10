@@ -5,6 +5,8 @@
   gap: 1rem;
   margin: 2rem;
   overflow-y: auto;
+  color: var(--nav-background);
+  margin-bottom: 5rem;
 }
 
 .movie-card {
@@ -34,6 +36,7 @@
 
 .load-more-button {
   font-size: 1.3rem;
+  margin-bottom: 5rem;
 }
 
 .loading {
