@@ -101,9 +101,7 @@ Deployed Application (**required**): [Flixster Deployed Site](https://danny-burr
 
 ### Walkthrough Video
 
-`TODO://` Add the embedded URL code to your animated app walkthrough below, `ADD_EMBEDDED_CODE_HERE`. Make sure the video or gif actually renders and animates when viewing this README. Ensure your walkthrough showcases the presence and/or functionality of all features you implemented above (check them off as you film!). Pay attention to any **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS** checkboxes listed above to ensure graders see the full functionality of your website! (🚫 Remove this paragraph after adding walkthrough video)
-
-`ADD_EMBEDDED_CODE_HERE`
+[Link to walkthrough](https://www.loom.com/share/921fde49694d4490ad6db217b8316e31?sid=08d1e257-a684-4012-95a5-a9be607b8590)
 
 ### Reflection
 
